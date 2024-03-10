@@ -1,0 +1,55 @@
+import argparse
+
+parser = argparse.ArgumentParser(description='STIP')
+parser.add_argument('--image_path', type=str, default='Z:\kjzhongxin\stage1_hainan\output-Img') #todo
+parser.add_argument('--data_train_path', type=str, default='data/sf/seq_12_4_train.txt') #todo
+parser.add_argument('--data_test_path', type=str, default='data/sf/seq_12_4_test.txt') #todo
+parser.add_argument('--data_val_path', type=str, default='data/sf/seq_12_4_val.txt')
+parser.add_argument('--input_length', type=int, default=8)   #输入图片 8cjh
+parser.add_argument('--real_length', type=int, default=10)   #输入图片序列长度,無用cjh
+parser.add_argument('--total_length', type=int, default=10)   #输入图片序列长度 10,预测2张cjh
+parser.add_argument('--img_height', type=int, default=512)
+parser.add_argument('--img_width', type=int, default=512)
+parser.add_argument('--time', type=int, default=2)
+parser.add_argument('--time_stride', type=int, default=1)
+parser.add_argument('--sr_size', type=int, default=16)   #会影响到encoder下采样和decoder下采样的层数，确定了他们的输入或输出大小
+parser.add_argument('--img_channel', type=int, default=3)
+parser.add_argument('--reverse_input', type=bool, default=False)
+parser.add_argument('--patch_size', type=int, default=2)
+parser.add_argument('--model_name', type=str, default='stip')
+parser.add_argument('--dataset', type=str, default='sf')
+parser.add_argument('--num_hidden', type=int, default=64)
+parser.add_argument('--D_num_hidden', type=int, default=64)
+parser.add_argument('--num_layers', type=int, default=16)
+parser.add_argument('--filter_size', type=int, default=(5, 5))
+parser.add_argument('--stride', type=int, default=1)
+parser.add_argument('--tau', type=int, default=8)
+parser.add_argument('--alpha', type=float, default=0.1)
+parser.add_argument('--is_training', type=bool, default=True)
+parser.add_argument('--lr', type=float, default=0.0001)
+parser.add_argument('--lr_d', type=float, default=0.0004)
+parser.add_argument('--lr_decay', type=float, default=0.90)
+parser.add_argument('--delay_interval', type=float, default=2000)
+parser.add_argument('--batch_size', type=int, default=4)
+parser.add_argument('--max_iterations', type=int, default=150000)
+parser.add_argument('--max_epoches', type=int, default=150000)
+parser.add_argument('--display_interval', type=int, default=1)
+parser.add_argument('--test_interval', type=int, default=1000)
+parser.add_argument('--snapshot_interval', type=int, default=1000)
+parser.add_argument('--num_save_samples', type=int, default=4)
+parser.add_argument('--n_gpu', type=int, default=1)
+parser.add_argument('--pretrained_model_pm', type=str, default='')
+parser.add_argument('--pretrained_model_d', type=str, default='')
+parser.add_argument('--perforamnce_dir', type=str, default='results/sf/')
+parser.add_argument('--save_dir', type=str, default='results/sf/')
+parser.add_argument('--gen_frm_dir', type=str, default='results/sf')
+parser.add_argument('--scheduled_sampling', type=bool, default=True)
+parser.add_argument('--sampling_stop_iter', type=int, default=20000)
+parser.add_argument('--sampling_start_value', type=float, default=1.0)
+parser.add_argument('--sampling_changing_rate', type=float, default=0.00005)
+parser.add_argument('--gd_loss_percent', type=float, default=0.8)
+parser.add_argument('--ld_loss_percent', type=float, default=0.2)
+parser.add_argument('--gd_feature_loss_percent', type=float, default=0.008)
+parser.add_argument('--ld_feature_loss_percent', type=float, default=0.002)
+args = parser.parse_args()
+args.tied = True
